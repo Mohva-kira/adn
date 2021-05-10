@@ -1,0 +1,14 @@
+.adnform{
+  margin: auto;
+  width: 720px;
+}
+
+mat-form-field  {
+  margin: auto;
+  width: auto;
+
+}
+
+form {
+display: inline-block;
+}

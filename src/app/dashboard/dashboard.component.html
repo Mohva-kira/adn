@@ -1,0 +1,215 @@
+<div class="content-wrapper">
+<section class="content">
+  <div class="container-fluid">
+    <span class="info-box-icon bg-warning elevation-1"><img src="assets/dist/img/adn-ic.png" width="75px" height="auto" alt=""></span>
+    <button class="creer" [routerLink]="['/adn']" routerLinkActive="router-link-active" ><span class="info-box-text">Créer un ADN</span></button>
+    <button class="recherche"><span class="info-box-number"> Recherche </span></button>
+    <!-- Info boxes -->
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box">
+          <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+
+         <a routerLink="/allAdn"> <div class="info-box-content">
+            <span class="info-box-text">NB ADN TOTAL</span>
+            <span class="info-box-number">
+              {{nbAdnTotal}}
+              <small></small>
+            </span>
+
+          </div>
+        </a>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+
+          <a routerLink="/allAdnWaiting">    <div class="info-box-content">
+            <span class="info-box-text">NB ADN En attente</span>
+            <span class="info-box-number"> {{nbAdnAtt}} </span>
+          </div> </a>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+
+      <!-- fix for small devices only -->
+      <div class="clearfix hidden-md-up"></div>
+
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+          <a routerLink="/allAdnValidate">    <div class="info-box-content">
+            <span class="info-box-text">NB ADN Validé</span>
+            <span class="info-box-number"> {{nbAdnVal}} </span>
+          </div> </a>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+        <a routerLink="/allAdnIncomplet">
+          <div class="info-box-content">
+            <span class="info-box-text">NB ADN Incomplet</span>
+            <span class="info-box-number"> {{nbAdnRej}} </span>
+          </div>
+        </a>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Monthly Recap Report</h5>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <div class="btn-group">
+                <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                  <i class="fas fa-wrench"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" role="menu">
+                  <a href="#" class="dropdown-item">Action</a>
+                  <a href="#" class="dropdown-item">Another action</a>
+                  <a href="#" class="dropdown-item">Something else here</a>
+                  <a class="dropdown-divider"></a>
+                  <a href="#" class="dropdown-item">Separated link</a>
+                </div>
+              </div>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-8">
+                <p class="text-center">
+                  <strong>Demandes ADN: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                </p>
+
+                <div class="chart">
+                  <!-- Sales Chart Canvas -->
+                  <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
+                </div>
+                <!-- /.chart-responsive -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <p class="text-center">
+                  <strong>Etat des demandes</strong>
+                </p>
+
+                <div class="progress-group">
+                  Nouvelles demandes
+                  <span class="float-right"><b> {{nbAdnAtt}} </b></span>
+                  <div class="progress progress-sm">
+                    <div class="progress-bar bg-primary" style="width: 80%"></div>
+                  </div>
+                </div>
+                <!-- /.progress-group -->
+
+                <div class="progress-group">
+                  Demandes vérifiée
+                  <span class="float-right"><b> {{nbAdnVal}} </b></span>
+                  <div class="progress progress-sm">
+                    <div class="progress-bar bg-danger" style="width: 75%"></div>
+                  </div>
+                </div>
+
+                <!-- /.progress-group -->
+                <div class="progress-group">
+                  <span class="progress-text">Demandes réjetées</span>
+                  <span class="float-right"><b> {{nbAdnRej}} </b></span>
+                  <div class="progress progress-sm">
+                    <div class="progress-bar bg-success" style="width: 60%"></div>
+                  </div>
+                </div>
+
+                <!-- /.progress-group -->
+                <!-- <div class="progress-group">
+                  Send Inquiries
+                  <span class="float-right"><b>250</b>/500</span>
+                  <div class="progress progress-sm">
+                    <div class="progress-bar bg-warning" style="width: 50%"></div>
+                  </div>
+                </div> -->
+                <!-- /.progress-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- ./card-body -->
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-sm-3 col-6">
+                <div class="description-block border-right">
+                  <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
+                  <h5 class="description-header">{{totalRev}} FCFA</h5>
+                  <span class="description-text"> REVENUE ADN IMPRIME</span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-3 col-6">
+                <div class="description-block border-right">
+                  <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
+                  <h5 class="description-header"> {{totalRevCopie}} FCFA</h5>
+                  <span class="description-text"> REVENUE COPIE ADN IMPRIME</span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-3 col-6">
+                <div class="description-block border-right">
+                  <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
+                  <h5 class="description-header">{{totalRevCopie + totalRev}} FCFA</h5>
+                  <span class="description-text">TOTAL PROFIT</span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-3 col-6">
+                <div class="description-block">
+                  <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
+                  <h5 class="description-header">1200</h5>
+                  <span class="description-text">GOAL COMPLETIONS</span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+        <!-- /.row -->
+  </div><!--/. container-fluid -->
+</section>
+<!-- /.content -->
+</div>
