@@ -70,16 +70,17 @@
     </li>
   </ul>
 
+
 </nav>
 <!-- /.navbar -->
-
-</header>
-
-<div style="margin: auto; width: 50%;" >
+<div style="margin: auto; width: 50%; margin-top: 60px; text-align: center; border-radius: 20px;" >
   <ul>
     <li *ngFor="let show of searchResult">
-       <p> {{ show.nom }}</p>
+       <p> <a routerLink="detail/{{show.id}}">  <i class="fas fa-eye"></i> </a> {{ show.nom }} &nbsp; {{ show.adnId }}</p>
     </li>
   </ul>
 </div>
+</header>
+
+
 

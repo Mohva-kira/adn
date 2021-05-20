@@ -41,6 +41,8 @@ import { NgxPrintModule } from 'ngx-print';
 import {MatTableModule} from '@angular/material/table';
 import {DatePipe} from '@angular/common';
 import { SearchbarComponent } from './searchbar/searchbar.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -83,7 +85,9 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
     MatButtonModule,
     MatListModule,
     NgxPrintModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
 
 
 

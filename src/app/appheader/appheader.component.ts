@@ -14,7 +14,7 @@ import { Adn } from '../adn';
 export class AppheaderComponent implements OnInit {
 
   public searchInput: String = '';
-  public searchResult: Array<any> = [];
+  public searchResult!: Adn[];
 
   adn !: Adn[];
   nbAdnTotal: any;
@@ -83,10 +83,10 @@ this.logoutbtn=false
       return this.searchResult = [];
     }
     this.searchResult = this.adn.filter((adn) => {
-      return adn.nom.toLowerCase().startsWith(event.target.value.toLowerCase());
+      return adn.adnId.toString().toLowerCase().startsWith(event.target.value.toLowerCase());
     })
 
-
+    console.log(this.searchResult);
   }
 
 }

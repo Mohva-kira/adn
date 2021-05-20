@@ -1,9 +1,11 @@
 import { ApiService } from './../../api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Adn } from '../../adn';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import {MatTableDataSource} from '@angular/material/table';
 import { FormGroup } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-adn-validated',
@@ -28,21 +30,28 @@ export class AdnValidatedComponent implements OnInit {
   Status: any = ['En attente', 'Incomplet', 'Valider'];
 
   adnForm !: FormGroup;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+@ViewChild(MatSort) sort!: MatSort;
+
   constructor(private apiService: ApiService) { }
 
 
   ngOnInit(): void {
     this.getAllAdnValiddate();
-
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   getAllAdnValiddate() {
     this.apiService.adnValider().subscribe((adn: Adn[]) => {
       this.adn = adn;
        this.nbAdnValide = adn.length;
-       this.dataSource = adn;
+       this.dataSource = new MatTableDataSource(adn);
+       this.dataSource.sort = this.sort;
+       this.dataSource.paginator = this.paginator;
     });
   }
+
   updateAdn(form: any){
 		form.value.id = this.selectedAdn.id;
 		form.value.nom = this.selectedAdn.nom;
@@ -78,6 +87,10 @@ selectAdn(acte: Adn){
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }
 

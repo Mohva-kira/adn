@@ -12,9 +12,9 @@ if(isset($postdata) && !empty($postdata))
   $printed = mysqli_real_escape_string($mysqli, trim($request['printed']));
   $userid = mysqli_real_escape_string($mysqli, trim($request['userid']));
   $printed_date = mysqli_real_escape_string($mysqli, trim($request['printed_date']));
-  $prix = mysqli_real_escape_string($mysqli, trim($request['prix']));
 
-	$sql = "UPDATE adn SET printed='$printed', updated_user='$userid', printed_date='$printed_date',prix='$prix' WHERE id = $id";
+
+	$sql = "UPDATE adn SET printed='$printed', updated_user='$userid', printed_date='$printed_date' WHERE id = $id";
 
 	if($mysqli->query($sql))
 	{

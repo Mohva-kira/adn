@@ -3,36 +3,16 @@
 
 <br/>
 <div>
-<table class="table table-striped table-bordered">
-<tr>
-<th>ID</th>
-<th>Nom</th>
-<th>Prenom</th>
-<th>Date de naissance</th>
-<th>Nom et prenom de la mère</th>
-<th>Status</th>
-<th>Operations</th>
-</tr>
-<tr *ngFor="let acte of adn">
-<td>{{ acte.id }}</td>
-<td>{{ acte.nom }}</td>
-<td>{{ acte.prenom }}</td>
-<td>{{ acte.dateNaissance }}</td>
-<td>{{ acte.mNom }} &nbsp; {{acte.mPrenom}} </td>
-<td>{{ acte.status }} </td>
-<td><button routerLink="/detail/{{acte.id}}">Voir</button></td>
-<td>
-<!-- <button (click)="selectAdn(acte)">Edit</button> -->
-<button id="del" (click)="deleteAdn(acte)">Delete</button>
-</td>
-</tr>
-</table>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  </mat-form-field>
 
 <table mat-table
-       [dataSource]="dataSource" multiTemplateDataRows
+       [dataSource]="dataSource" matSort multiTemplateDataRows
        class="mat-elevation-z8">
   <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </th>
     <td mat-cell *matCellDef="let element "> {{element[column]}} </td>
 
   </ng-container>
@@ -81,3 +61,5 @@
   </tr>
   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 </table>
+
+<mat-paginator [pageSizeOptions]="[6, 12, 18]" showFirstLastButtons></mat-paginator>

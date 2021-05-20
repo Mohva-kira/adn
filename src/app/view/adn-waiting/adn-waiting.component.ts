@@ -2,11 +2,13 @@
 
 
 import { ApiService } from './../../api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Adn } from 'src/app/adn';
 import { MatTableDataSource } from '@angular/material/table';
 import { PeriodicElement } from '../adn-validated/adn-validated.component';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 
 @Component({
@@ -30,18 +32,33 @@ expandedElement!: PeriodicElement | null;
 selectedAdn: any = {id: null ,  nom: null, prenom: null, status: null, nb_copie: null};
 Status: any = ['En attente', 'Incomplet', 'Valider'];
 
+@ViewChild(MatPaginator) paginator!: MatPaginator;
+@ViewChild(MatSort) sort!: MatSort;
+
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.getAdnWaiting();
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   public getAdnWaiting(){
     this.apiService.adnAttente().subscribe((adn: Adn[]) => {
       this.adn = adn;
        this.nbAdnWaiting = adn.length;
-       this.dataSource = adn;
+       this.dataSource = new MatTableDataSource(adn);
+       this.dataSource.sort = this.sort;
+       this.dataSource.paginator = this.paginator;
     });
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   updateAdn(form: any){

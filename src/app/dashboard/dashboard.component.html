@@ -1,20 +1,19 @@
 <div class="content-wrapper">
 <section class="content">
   <div class="container-fluid">
-    <span class="info-box-icon bg-warning elevation-1"><img src="assets/dist/img/adn-ic.png" width="75px" height="auto" alt=""></span>
-    <button class="creer" [routerLink]="['/adn']" routerLinkActive="router-link-active" ><span class="info-box-text">Créer un ADN</span></button>
-    <button class="recherche"><span class="info-box-number"> Recherche </span></button>
+    <span class="info-box-icon bg-warning elevation-1"></span>
+
     <!-- Info boxes -->
     <div class="row">
       <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box">
-          <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+          <span class="info-box-icon bg-info elevation-1"><img src="assets/dist/img/adn-ic.png" width="75px" height="auto" alt=""></span>
 
          <a routerLink="/allAdn"> <div class="info-box-content">
             <span class="info-box-text">NB ADN TOTAL</span>
             <span class="info-box-number">
               {{nbAdnTotal}}
-              <small></small>
+
             </span>
 
           </div>
@@ -26,7 +25,7 @@
       <!-- /.col -->
       <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box mb-3">
-          <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+          <span class="info-box-icon bg-warning elevation-1"><img src="assets/dist/img/adn-ic.png" width="75px" height="auto" alt=""></span>
 
           <a routerLink="/allAdnWaiting">    <div class="info-box-content">
             <span class="info-box-text">NB ADN En attente</span>
@@ -43,7 +42,7 @@
 
       <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box mb-3">
-          <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+          <span class="info-box-icon bg-success elevation-1"><img src="assets/dist/img/adn-ic.png" width="75px" height="auto" alt=""></span>
 
           <a routerLink="/allAdnValidate">    <div class="info-box-content">
             <span class="info-box-text">NB ADN Validé</span>
@@ -56,7 +55,7 @@
       <!-- /.col -->
       <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box mb-3">
-          <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+          <span class="info-box-icon bg-danger elevation-1"><img src="assets/dist/img/adn-ic.png" width="75px" height="auto" alt=""></span>
 
         <a routerLink="/allAdnIncomplet">
           <div class="info-box-content">
