@@ -19,10 +19,15 @@ export class Adn {
   annee!: Date;
   centre!: string;
   commune!: string;
-  dateD!: Date;
+  date_demande!: Date;
   status!: string;
   printed!: string;
+  printed_date!: Date;
   prix!: string;
   nb_copie!: number;
+  created_user!: number;
+  created_date!: Date;
+  updated_date!: Date;
+  updated_user!: number;
 
 }

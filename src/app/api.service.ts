@@ -1,3 +1,4 @@
+import { User } from './manager/user';
 
 
 import { Adn } from './adn';
@@ -12,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   redirectUrl!: string;
-  baseUrl: string = 'http://localhost/adn/php';
+  baseUrl: string = 'http://192.168.1.60/adnBuild/php';
   adn!: Adn[];
 
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
@@ -25,6 +26,7 @@ export class ApiService {
       .post<any>(this.baseUrl + '/login.php', { username, password })
       .pipe(
         map((Users) => {
+
           this.setToken(Users[0].name);
           this.getLoggedInName.emit(true);
           return Users;

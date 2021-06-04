@@ -7,7 +7,7 @@ import { Role } from './manager/role';
 export class AuthService {
 
 
-  private user: User |any  = localStorage.getItem('token');
+  private user: User |any  = sessionStorage.getItem('user');
 
   constructor(private apiService: ApiService){}
     isAuthorized() {

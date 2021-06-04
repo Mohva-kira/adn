@@ -30,6 +30,7 @@ const routes: Routes = [
   { path: 'allAdnIncomplet', component: AdnIncompletComponent,canActivate: [AuthGuard] },
   { path: 'allAdnValidate', component: AdnValidatedComponent,canActivate: [AuthGuard] },
   { path: 'allAdnWaiting', component: AdnWaitingComponent,canActivate: [AuthGuard] },
+
   {
     path: 'detail/:id',
     canActivate: [AuthGuard],

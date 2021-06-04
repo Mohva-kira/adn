@@ -43,6 +43,7 @@ import {DatePipe} from '@angular/common';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { MatSortModule } from '@angular/material/sort';
     AdnIncompletComponent,
     PrintLayoutComponent,
     SearchbarComponent,
+    ProfileComponent,
 
 
   ],

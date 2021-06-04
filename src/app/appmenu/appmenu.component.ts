@@ -1,7 +1,9 @@
+
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Role } from '../manager/role';
 import { AuthService } from '../auth.service';
+import { Users } from '../users';
 
 @Component({
   selector: 'app-appmenu',
@@ -9,10 +11,17 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./appmenu.component.css']
 })
 export class AppmenuComponent implements OnInit {
-
-  constructor( private router: Router, private authService: AuthService) { }
+  users!: Users[];
+  user!: Users;
+  constructor( private router: Router, private authService: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    let data = sessionStorage.getItem('user');
+    this.users= JSON.parse( data!);
+    console.log(this.users);
+    const id = this.route.snapshot.paramMap.get('id');
+
+
   }
 
   get isAuthorized() {

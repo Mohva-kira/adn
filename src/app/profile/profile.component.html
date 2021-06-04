@@ -1,0 +1,104 @@
+<div class="content-wrapper">
+<section class="content" >
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle"
+                       src="assets/dist/img/avatar5.png"
+                       alt="User profile picture">
+                </div>
+
+                <h3 class="profile-username text-center"> {{users[0].name}} </h3>
+
+                <p class="text-muted text-center"> {{users[0].role}} </p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b>Date création</b> <a class="float-right"> {{users[0].created_date}} </a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Nombre de ADN</b> <a class="float-right"> {{nbMyAdns}} </a>
+                  </li>
+                  <!-- <li class="list-group-item">
+                    <b>Friends</b> <a class="float-right">13,287</a>
+                  </li> -->
+                </ul>
+
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- About Me Box -->
+
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activité <br> Adn créer</a> </li>
+                  <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab"></a></li>
+                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab"></a></li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="active tab-pane" id="activity">
+                    <!-- Post -->
+                    <div class="post" *ngFor="let myAdn of AdnRanger ">
+                      <div class="user-block">
+                        <img class="img-circle img-bordered-sm" src="assets/dist/img/adn-ic.png" alt="user image">
+                        <span class="username">
+                          <a routerLink="/adn/{{myAdn.id}}">{{myAdn.nom}} {{myAdn.prenom}}</a>
+                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                        </span>
+                        <span class="description"> {{myAdn.localiteNaissance}}  &nbsp; status: {{myAdn.status}} </span>
+
+                      </div>
+                      <!-- /.user-block -->
+                      <p>
+
+                      </p>
+
+                      <p>
+                      <i class="fas fa-calendar-alt mr-1"></i> Date demande: {{myAdn.date_demande}}
+                        <!-- <a class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a> -->
+                        <span class="float-right">
+
+                            <i class="fas fa-print mr-1"></i> Déjà imprimer? : {{myAdn.printed}}
+                          &nbsp;
+                            <i class="far fa-calendar-alt mr-1"></i> Date d'impression : {{myAdn.printed_date}}
+
+                        </span>
+                      </p>
+
+
+                    </div>
+                    <!-- /.post -->
+
+                  </div>
+                  <!-- /.tab-pane -->
+
+
+
+                  <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+  </div>

@@ -40,6 +40,7 @@ console.log(data);
 this.authService.login(data[0].role);
 console.log(data[0].role);
 localStorage.setItem('userid', data[0].id);
+sessionStorage.setItem('user', JSON.stringify(data));
 if (data[0].role === 'admin') {
   this.router.navigate(['admin/dashboard']);
 }else if (data[0].role === 'user') {
