@@ -18,7 +18,8 @@ export class AppmenuComponent implements OnInit {
   ngOnInit(): void {
     let data = sessionStorage.getItem('user');
     this.users= JSON.parse( data!);
-    console.log(this.users);
+    this.user = this.users[0];
+    console.log(this.user);
     const id = this.route.snapshot.paramMap.get('id');
 
 

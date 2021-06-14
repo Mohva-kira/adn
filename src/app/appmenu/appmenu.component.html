@@ -15,8 +15,15 @@
           <img src="assets/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a routerLink="/admin/profile/{{users[0].id}}" class="d-block"> {{users[0].name}} </a>
+          <a routerLink="/admin/profile/{{user.id}}" class="d-block"> {{user.name}} </a>
         </div>
+        <br>
+
+
+      </div>
+      <div class="users" >
+        <i class="fa fa-users" aria-hidden="true"></i> &nbsp;
+        <a routerLink="/admin/users/">Utilisateurs</a>
       </div>
 
       <!-- SidebarSearch Form -->

@@ -1,3 +1,4 @@
+import { UsersComponent } from './../users/users.component';
 import { ProfileComponent } from './../profile/profile.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -7,6 +8,7 @@ export const routes: Routes = [
     {path: '', redirectTo:'dashboard' },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'profile/:id', component: ProfileComponent },
+    { path: 'users', component: UsersComponent },
 ];
 
 @NgModule({

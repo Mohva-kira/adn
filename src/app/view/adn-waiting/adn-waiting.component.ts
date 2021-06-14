@@ -1,14 +1,17 @@
 
+import { UpdateAdnComponent } from './../update-adn/update-adn.component';
+
 
 
 import { ApiService } from './../../api.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject} from '@angular/core';
 import { Adn } from 'src/app/adn';
 import { MatTableDataSource } from '@angular/material/table';
 import { PeriodicElement } from '../adn-validated/adn-validated.component';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 
 @Component({
@@ -27,7 +30,7 @@ export class AdnWaitingComponent implements OnInit {
 adn !: Adn [];
 nbAdnWaiting !: any;
 dataSource :any =  new MatTableDataSource();
-columnsToDisplay = ['nom', 'prenom', 'dateNaissance', 'status'];
+columnsToDisplay = ['nom', 'prenom', 'dateNaissance', 'status', 'actions'];
 expandedElement!: PeriodicElement | null;
 selectedAdn: any = {id: null ,  nom: null, prenom: null, status: null, nb_copie: null};
 Status: any = ['En attente', 'Incomplet', 'Valider'];
@@ -35,7 +38,7 @@ Status: any = ['En attente', 'Incomplet', 'Valider'];
 @ViewChild(MatPaginator) paginator!: MatPaginator;
 @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getAdnWaiting();
@@ -92,4 +95,14 @@ selectAdn(acte: Adn){
       })
     });
   }
+
+  openDialog(id: number) {
+    this.dialog.open(UpdateAdnComponent, {
+      data: {
+        adn: this.adn,
+        id: id
+      }
+    });
+  }
 }
+

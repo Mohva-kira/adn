@@ -1,6 +1,8 @@
 
   <app-appheader></app-appheader>
   <app-appmenu  ></app-appmenu>
-  <div class="wrapper"><router-outlet></router-outlet> </div>
+  <div class="content-wrapper">
+    <app-ng-dynamic-breadcrumb></app-ng-dynamic-breadcrumb>
+    <router-outlet></router-outlet> </div>
   <app-appfooter></app-appfooter>
   <app-appsetting></app-appsetting>

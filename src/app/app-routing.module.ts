@@ -27,6 +27,19 @@ const routes: Routes = [
 
   { path: 'viewadn', component: AdnComponent,canActivate: [AuthGuard] },
   { path: 'allAdn', component: AllAdnComponent,canActivate: [AuthGuard] },
+  {
+    path: 'allAdnWaiting',
+    component: AdnWaitingComponent,
+    data: {
+      title: 'Les Adn',
+      breadcrumb: [
+        {
+          label: 'Les ADN',
+          url: ''
+        }
+      ]
+    },
+  },
   { path: 'allAdnIncomplet', component: AdnIncompletComponent,canActivate: [AuthGuard] },
   { path: 'allAdnValidate', component: AdnValidatedComponent,canActivate: [AuthGuard] },
   { path: 'allAdnWaiting', component: AdnWaitingComponent,canActivate: [AuthGuard] },

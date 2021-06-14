@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
         this.myAdns = this.adns.filter(adn => adn.created_user == id)!;
         this.nbMyAdns = this.myAdns.length;
         console.log(this.myAdns);
-      });;
+      });
 
 
 

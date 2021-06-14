@@ -1,0 +1,14 @@
+<form   #f = "ngForm">
+
+  <input type="text" name="id" [(ngModel)] = "selectedAdn.id" style="display: none;">
+  <br>
+  <label>Nom</label>
+  <input type="text" name="nom" [(ngModel)] = "selectedAdn.nom" disabled>
+  <br>
+  <label>Prenom</label>
+  <input type="text" name="prenom" [(ngModel)] = "selectedAdn.prenom" disabled>
+  <br>
+  <input type="submit" (click)="deleteAdn(f)" value="Enregistrer">
+
+
+  </form>

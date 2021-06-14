@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+
 <section class="content" >
       <div class="container-fluid">
         <div class="row">
@@ -73,9 +73,9 @@
                         <!-- <a class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a> -->
                         <span class="float-right">
 
-                            <i class="fas fa-print mr-1"></i> Déjà imprimer? : {{myAdn.printed}}
+                            <i class="fas fa-print mr-1"></i> Déjà imprimer? : {{(myAdn?.printed || "Non")}}
                           &nbsp;
-                            <i class="far fa-calendar-alt mr-1"></i> Date d'impression : {{myAdn.printed_date}}
+                            <i class="far fa-calendar-alt mr-1"></i> Date d'impression : {{myAdn?.printed_date || "Non imprimé"}}
 
                         </span>
                       </p>
@@ -101,4 +101,4 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-  </div>
+

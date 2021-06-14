@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   redirectUrl!: string;
-  baseUrl: string = 'http://192.168.1.60/adnBuild/php';
+  baseUrl: string = 'http://localhost/adn/php';
   adn!: Adn[];
 
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
@@ -53,6 +53,7 @@ export class ApiService {
   }
   deleteToken() {
     localStorage.removeItem('token');
+    sessionStorage.removeItem('user');
   }
   isLoggedIn() {
     const usertoken = this.getToken();
@@ -151,6 +152,14 @@ export class ApiService {
     .get<Adn[]>(
       this.baseUrl + '/api/printed_copie_adn.php'
     );
+  }
+
+  public readUsers(): Observable<Users[]> {
+    return this.httpClient
+    .get<Users[]>(
+      this.baseUrl + '/api/users.php'
+    );
+
   }
 
 

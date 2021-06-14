@@ -44,6 +44,12 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './users/users.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { UpdateAdnComponent } from './view/update-adn/update-adn.component';
+import {NgDynamicBreadcrumbModule} from "ng-dynamic-breadcrumb";
+import { ConfirmDeleteComponent } from './view/confirm-delete/confirm-delete.component';
+
 
 
 @NgModule({
@@ -71,6 +77,10 @@ import { ProfileComponent } from './profile/profile.component';
     PrintLayoutComponent,
     SearchbarComponent,
     ProfileComponent,
+    UsersComponent,
+    UpdateAdnComponent,
+    ConfirmDeleteComponent,
+
 
 
   ],
@@ -89,7 +99,9 @@ import { ProfileComponent } from './profile/profile.component';
     NgxPrintModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule,
+    NgDynamicBreadcrumbModule,
 
 
 

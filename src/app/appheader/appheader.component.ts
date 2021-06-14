@@ -89,4 +89,6 @@ this.logoutbtn=false
     console.log(this.searchResult);
   }
 
+
+
 }
