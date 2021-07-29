@@ -4,20 +4,39 @@
 </div>
 <div class="col-md-6 col-md-offset-3">
 <div class="jumbotron">
-<form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off" >
+<form [formGroup]="angForm" #f (ngSubmit)="postdata(angForm)" autocomplete="off" >
 <div class="form-group">
-<label for="name">Name</label>
-<input type="text" name="name" formControlName="name" autocomplete="off" class="form-control input-sm" placeholder="Name">
+  <mat-form-field appearance="fill">
+    <mat-label>Nom et prénom</mat-label>
+
+<input matInput type="text" name="name" formControlName="name" autocomplete="off" class="form-control input-sm" placeholder="Nom et prénom">
+</mat-form-field>
 </div>
 <div class="form-group">
-<label for="email">Email</label>
-<input type="email" name="email" formControlName="email" autocomplete="off" class="form-control input-sm" placeholder="Email">
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+
+<input matInput type="email" name="email" formControlName="email" autocomplete="off" class="form-control input-sm" placeholder="Email">
+</mat-form-field>
 </div>
 <div class="form-group">
-<label for="Password">Password</label>
-<input type="password" name="Password" formControlName="password" autocomplete="off" class="form-control input-sm" placeholder="Password">
+  <mat-form-field appearance="fill">
+    <mat-label>Mot de passe</mat-label>
+
+<input matInput type="password" name="Password" formControlName="password" autocomplete="off" class="form-control input-sm" placeholder="Mot de passe">
+</mat-form-field>
 </div>
-<button type="submit" class="btn btn-success" >Register</button>
+<div class="form-group">
+<mat-form-field appearance="fill">
+  <mat-label>Role</mat-label>
+  <select class="select" matNativeControl required  [(ngModel)] = "selectedRole.id"  [ngModelOptions]="{ standalone: true}">
+    <option *ngFor="let role of selectRole" [ngValue]="role.id">{{role.nom}}</option>
+
+  </select>
+</mat-form-field>
+</div>
+
+<button type="submit" class="btn btn-success" >Créer </button>
 </form>
 </div>
 </div>

@@ -22,9 +22,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllAdn();
-    this.getAdnWaiting();
-    this.getAdnValidate();
-    this.getAdnReject();
     this.countPrint();
     this.countPrintCopie();
   }
@@ -33,13 +30,15 @@ export class DashboardComponent implements OnInit {
     this.dataservice.readAdn().subscribe((adn: Adn[]) => {
       this.adn = adn;
       this.nbAdnTotal = adn.length;
+      this.nbAdnAtt = this.adn.filter(adn => adn.status == 'Non valide').length;
+      this.nbAdnVal = this.adn.filter(adn => adn.status == 'Valider').length;
     });
   }
 
   countPrint(){
     this.dataservice.countPrint().subscribe((adn: Adn[]) => {
       this.adn = adn;
-      this.totalRev = this.adn.reduce((acc, cur) => acc + 500, 0);
+      this.totalRev = this.adn.reduce((acc, cur) => acc + 500 , 0);
     });
   }
 
@@ -52,24 +51,6 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  getAdnWaiting() {
-    this.dataservice.adnAttente().subscribe((adn: Adn[]) => {
-      this.adn = adn;
-      this.nbAdnAtt = adn.length;
-    });
-  }
 
-  getAdnValidate(){
-    this.dataservice.adnValider().subscribe((adn: Adn[]) => {
-      this.adn = adn;
-      this.nbAdnVal = adn.length;
-    });
-  }
 
-  getAdnReject(){
-    this.dataservice.adnIncomplet().subscribe((adn: Adn[]) => {
-      this.adn = adn;
-      this.nbAdnRej = adn.length;
-    });
-  }
 }

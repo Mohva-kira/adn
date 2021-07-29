@@ -1,0 +1,48 @@
+<form [formGroup]="mairieForm"  #m = "ngForm" autocomplete="off" >
+
+    <label for="select">Region</label>
+    <select name="region" formControlName="region" class="custom-select" [(ngModel)]= "selectedLocal.region" (change)="selected()">
+      <option value="" disabled>Choisir un status</option>
+      <option *ngFor="let local of locality" [ngValue]="local.id">{{local.name}}</option>
+   </select>
+
+ <br>
+ <label for="select">Cercle</label>
+ <select name="cercle" formControlName="cercle" class="custom-select"  [(ngModel)]= "selectedLocal.cercle"  (change)="selected()">
+   <option value="" disabled>Choisir un cercle</option>
+   <option *ngFor="let local of cercles" [ngValue]="local.id" > <div *ngIf=" local.locality_sup_id === selectedLocal.region" >{{local.name}}  </div> </option>
+</select>
+  <br>
+  <label for="select">Arrondissement</label>
+  <select name="arrondissement" formControlName="arrondissement" class="custom-select" [(ngModel)]= "selectedLocal.arrondissement" >
+    <option value="" disabled>Choisir un arrondissement</option>
+    <option *ngFor="let local of arrondissements" [ngValue]="local.id"> <div *ngIf=" local.locality_sup_id == selectedLocal.cercle" > {{local.name}}</div></option>
+ </select>
+  <br>
+  <label for="select">Commune</label>
+ <select name="commune" formControlName="commune" class="custom-select" >
+   <option value="" disabled>Choisir un commune</option>
+   <option value="1">Commune I </option>
+   <option value="2">Commune II </option>
+   <option value="3">Commune III </option>
+   <option value="4">Commune IV </option>
+   <option value="5">Commune V </option>
+   <option value="6">Commune VI </option>
+</select>
+  <br>
+  <label for="select">Centre</label>
+  <select name="centre" formControlName="centre" class="custom-select" >
+    <option value="" disabled>Choisir un centre</option>
+    <option value="Principal">Principal</option>
+    <option value="Sécondaire">Sécondaire</option>
+ </select>
+
+
+
+
+<div>
+  <button mat-button matStepperNext (click)="saveConf(m)">Enregistrer </button>
+  <button mat-button matStepperNext style="color: red;">Annulé </button>
+</div>
+
+</form>

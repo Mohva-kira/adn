@@ -7,19 +7,20 @@ input {
 	box-sizing: border-box;
 }
 
-button, input[type=button]{
-	background-color: #4CAF50;
+.voir {
+	color: #4CAF50;
 	border: none;
-	color: white;
-	padding: 4px 7px;
-	text-decoration: none;
-	margin: 2px 1px;
-	cursor: pointer;
+
+}
+
+#edit{
+  color: #4CAF50;
+  border: none;
 }
 
 #del
 {
-	background-color: red;
+	color: red;
 	border: none;
 }
 
@@ -98,6 +99,17 @@ tr.example-element-row:not(.example-expanded-row):active {
 
 mat-paginator{
   margin: auto;
+  margin-top: 20px;
   display: block;
   width: 50%;
+  padding: 20px 20px;
+}
+
+.choix{
+  margin: auto;
+  padding: 20px;
+  width: 50%;
+}
+button{
+  margin: 20px 20px;
 }

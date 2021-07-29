@@ -12,39 +12,39 @@ import { Role } from './manager/role';
 })
 export class AuthGuard implements CanActivate {
   constructor(private dataService: ApiService,private router: Router, private authService: AuthService ) {}
-  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+  canActivate(route: ActivatedRouteSnapshot): boolean {
+
     if (!this.authService.isAuthorized()) {
 
         this.router.navigate(['login']);
-        return false;
+        // return false;
     }
 
-
-    const roles = route.data.roles as Role[];
-    if (roles && !roles.some(r => this.authService.hasRole(r))) {
-        this.router.navigate(['error', 'not-found']);
-        return false;
-    }
-    return true;
+    // const roles = route.data.roles as Role[];
+    // if (roles && !roles.some(r => this.authService.hasRole(r))) {
+    //     this.router.navigate(['error', 'not-found']);
+    //     return false;
+    // }
+    return this.authService.isAuthorized();
 }
-canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.authService.isAuthorized()) {
-        return false;
-    }
-    const roles = route.data && route.data.roles as Role[];
-    if (roles && !roles.some(r => this.authService.hasRole(r))) {
-        return false;
-    }
-    return true;
-}
+// canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
+//     if (!this.authService.isAuthorized()) {
+//         return false;
+//     }
+//     const roles = route.data && route.data.roles as Role[];
+//     if (roles && !roles.some(r => this.authService.hasRole(r))) {
+//         return false;
+//     }
+//     return true;
+// }
 
-  isLogin(routeurl: string): any {
-    if (this.dataService.isLoggedIn()) {
-    return true;
-    }
+//   isLogin(routeurl: string): any {
+//     if (this.dataService.isLoggedIn()) {
+//     return true;
+//     }
 
-    this.dataService.redirectUrl = routeurl;
-    this.router.navigate(['/login'], {queryParams: { returnUrl: routeurl }} );
-    }
+//     this.dataService.redirectUrl = routeurl;
+//     this.router.navigate(['/login'], {queryParams: { returnUrl: routeurl }} );
+//     }
 
 }

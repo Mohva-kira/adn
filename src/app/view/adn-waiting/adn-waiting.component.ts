@@ -1,3 +1,4 @@
+import { ConfirmDeleteComponent } from './../confirm-delete/confirm-delete.component';
 
 import { UpdateAdnComponent } from './../update-adn/update-adn.component';
 
@@ -29,30 +30,54 @@ import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 export class AdnWaitingComponent implements OnInit {
 adn !: Adn [];
 nbAdnWaiting !: any;
-dataSource :any =  new MatTableDataSource();
+dataSource: any =  new MatTableDataSource();
 columnsToDisplay = ['nom', 'prenom', 'dateNaissance', 'status', 'actions'];
 expandedElement!: PeriodicElement | null;
 selectedAdn: any = {id: null ,  nom: null, prenom: null, status: null, nb_copie: null};
 Status: any = ['En attente', 'Incomplet', 'Valider'];
-
+PublishedAdn!: Adn [];
 @ViewChild(MatPaginator) paginator!: MatPaginator;
 @ViewChild(MatSort) sort!: MatSort;
+  public loading = false;
 
   constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getAdnWaiting();
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+
+    this.valider();
   }
 
-  public getAdnWaiting(){
-    this.apiService.adnAttente().subscribe((adn: Adn[]) => {
+
+
+  incomplet(){
+    this.loading = true;
+    this.apiService.readAdn().subscribe((adn: Adn[]) => {
       this.adn = adn;
-       this.nbAdnWaiting = adn.length;
-       this.dataSource = new MatTableDataSource(adn);
-       this.dataSource.sort = this.sort;
-       this.dataSource.paginator = this.paginator;
+      this.nbAdnWaiting = adn.length;
+      console.log('les adn', adn);
+        this.PublishedAdn = this.adn.filter(adn => adn.status == 'Non valide' );
+      console.log('adn publié', this.PublishedAdn);
+      this.dataSource = new MatTableDataSource(this.PublishedAdn);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.loading = false;
+    });
+
+  }
+
+  valider(){
+    this.loading = true;
+    this.apiService.readAdn().subscribe((adn: Adn[]) => {
+      this.adn = adn.filter(adn => adn.published == 1);
+      this.nbAdnWaiting = adn.length;
+      console.log('les adn', adn);
+      this.PublishedAdn = this.adn.filter(adn => adn.status == 'Valider' );
+      console.log('adn publié', this.PublishedAdn);
+      this.dataSource = new MatTableDataSource(this.PublishedAdn);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.loading = false;
+
     });
   }
   applyFilter(event: Event) {
@@ -68,17 +93,17 @@ Status: any = ['En attente', 'Incomplet', 'Valider'];
 		form.value.id = this.selectedAdn.id;
 		form.value.nom = this.selectedAdn.nom;
 		form.value.prenom = this.selectedAdn.prenom;
-    form.value.status = this.selectedAdn.status;
-    form.value.userid = localStorage.getItem('userid');
+  form.value.status = this.selectedAdn.status;
+  form.value.userid = localStorage.getItem('userid');
 
-		if(this.selectedAdn && this.selectedAdn.id){
-      if (form.value.status =="Valider") {
+		if (this.selectedAdn && this.selectedAdn.id){
+      if (form.value.status == 'Valider') {
         form.value.published = 1;
 
       }
-			this.apiService.updateAdnStatus(form.value).subscribe((acte: Adn)=>{
-			console.log("Adn updated" , form.value);
-      console.log(acte);
+			   this.apiService.updateAdnStatus(form.value).subscribe((acte: Adn) => {
+			console.log('Adn updated' , form.value);
+   console.log(acte);
 
 			});
 
@@ -88,11 +113,11 @@ selectAdn(acte: Adn){
   this.selectedAdn = acte;
 }
   deleteAdn(form: any){
-    this.apiService.deleteAdn(form.value).subscribe((acte: Adn)=>{
-      console.log("Adn deleted, ", acte);
-      this.apiService.readAdn().subscribe((acte: Adn[])=>{
+    this.apiService.deleteAdn(form.value).subscribe((acte: Adn) => {
+      console.log('Adn deleted, ', acte);
+      this.apiService.readAdn().subscribe((acte: Adn[]) => {
         this.adn = acte;
-      })
+      });
     });
   }
 
@@ -100,7 +125,15 @@ selectAdn(acte: Adn){
     this.dialog.open(UpdateAdnComponent, {
       data: {
         adn: this.adn,
-        id: id
+        id
+      }
+    });
+  }
+  deleteConfirm(id: number){
+    this.dialog.open(ConfirmDeleteComponent, {
+      data: {
+        adn: this.adn,
+        id
       }
     });
   }

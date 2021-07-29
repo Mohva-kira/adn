@@ -7,21 +7,29 @@ import { Role } from './manager/role';
 export class AuthService {
 
 
-  private user: User |any  = sessionStorage.getItem('user');
+  private users: User |any =  sessionStorage.getItem('user');
 
-  constructor(private apiService: ApiService){}
-    isAuthorized() {
-        return !!this.user;
+  constructor(private apiService: ApiService){
+
+  }
+    isAuthorized(): boolean {
+         return !!sessionStorage.getItem('user');
+        // if (this.users){
+        //   return true;
+        // }
+        // return false;
     }
     hasRole(role: Role) {
-        return this.isAuthorized() && this.user.role === role;
+
+        return this.isAuthorized() && this.users[0].role === role;
     }
     login(role: Role) {
-      this.user = { role: role };
+      let user= JSON.parse(this.users);
+      user = { role: role };
     }
     logout() {
-      this.apiService.deleteToken();
-      this.user = null;
+      // this.apiService.deleteToken();
+      sessionStorage.removeItem('user');
 
     }
 }

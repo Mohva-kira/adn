@@ -1,6 +1,6 @@
 .cadreadn{
   border: 1px solid black;
-  width: 21cm;
+  width: 50%;
 
   display: block;
   margin: 0 auto;
@@ -12,6 +12,15 @@
 }
 
 
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+  opacity: 0.03 !important;
+  background-color: green !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: green;
+}
 table, th, td {
   width: 100%;
   border: 1px solid black;
@@ -89,7 +98,7 @@ font-size: large;
 }
 form {
   margin:auto;
-  width: 50%;
+  width: 320px;
   margin-bottom: 70px !important;
 }
 

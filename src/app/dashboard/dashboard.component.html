@@ -5,68 +5,30 @@
 
     <!-- Info boxes -->
     <div class="row">
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box">
-          <span class="info-box-icon bg-info elevation-1"><img src="assets/dist/img/adn-ic.png" width="75px" height="auto" alt=""></span>
+  <mat-card  class="info-box-icon elevation-1">
+      <mat-card-header>
+          <mat-card-title>ADN NON VALIDE</mat-card-title>
+          <mat-card-subtitle> Nombre ADN non Valide {{nbAdnAtt}}</mat-card-subtitle>
+      </mat-card-header>
+      <a href="javascript:void(); " routerLink="/allAdnWaiting"> <span> <img class="bg-danger" style="border-radius: 20px;"  matCardImage src="assets/dist/img/adn-ic.png" width="75px" height="auto" alt=""></span> </a>
 
-         <a routerLink="/allAdn"> <div class="info-box-content">
-            <span class="info-box-text">NB ADN TOTAL</span>
-            <span class="info-box-number">
-              {{nbAdnTotal}}
+  </mat-card>
+  <mat-card  class="info-box-icon elevation-1">
+    <mat-card-header>
+        <mat-card-title>ADN VALIDE</mat-card-title>
+        <mat-card-subtitle> Nombre ADN Valide {{nbAdnVal}}</mat-card-subtitle>
+    </mat-card-header>
+    <a href="javascript:void() " routerLink="/allAdnWaiting">  <span> <img class="bg-success" style="border-radius: 20px;" matCardImage src="assets/dist/img/adn-ic.png" width="75px" height="auto" alt=""> </span></a>
 
-            </span>
+</mat-card>
 
-          </div>
-        </a>
-          <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
-      </div>
-      <!-- /.col -->
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box mb-3">
-          <span class="info-box-icon bg-warning elevation-1"><img src="assets/dist/img/adn-ic.png" width="75px" height="auto" alt=""></span>
 
-          <a routerLink="/allAdnWaiting">    <div class="info-box-content">
-            <span class="info-box-text">NB ADN En attente</span>
-            <span class="info-box-number"> {{nbAdnAtt}} </span>
-          </div> </a>
-          <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
-      </div>
-      <!-- /.col -->
+
 
       <!-- fix for small devices only -->
       <div class="clearfix hidden-md-up"></div>
 
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box mb-3">
-          <span class="info-box-icon bg-success elevation-1"><img src="assets/dist/img/adn-ic.png" width="75px" height="auto" alt=""></span>
 
-          <a routerLink="/allAdnValidate">    <div class="info-box-content">
-            <span class="info-box-text">NB ADN Validé</span>
-            <span class="info-box-number"> {{nbAdnVal}} </span>
-          </div> </a>
-          <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
-      </div>
-      <!-- /.col -->
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box mb-3">
-          <span class="info-box-icon bg-danger elevation-1"><img src="assets/dist/img/adn-ic.png" width="75px" height="auto" alt=""></span>
-
-        <a routerLink="/allAdnIncomplet">
-          <div class="info-box-content">
-            <span class="info-box-text">NB ADN Incomplet</span>
-            <span class="info-box-number"> {{nbAdnRej}} </span>
-          </div>
-        </a>
-          <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
-      </div>
 
     </div>
     <!-- /.row -->
@@ -122,7 +84,7 @@
                   Nouvelles demandes
                   <span class="float-right"><b> {{nbAdnAtt}} </b></span>
                   <div class="progress progress-sm">
-                    <div class="progress-bar bg-primary" style="width: 80%"></div>
+                    <div class="progress-bar bg-primary" style="width: 40%"></div>
                   </div>
                 </div>
                 <!-- /.progress-group -->
@@ -131,18 +93,10 @@
                   Demandes vérifiée
                   <span class="float-right"><b> {{nbAdnVal}} </b></span>
                   <div class="progress progress-sm">
-                    <div class="progress-bar bg-danger" style="width: 75%"></div>
+                    <div class="progress-bar bg-success" style="width: 85%"></div>
                   </div>
                 </div>
 
-                <!-- /.progress-group -->
-                <div class="progress-group">
-                  <span class="progress-text">Demandes réjetées</span>
-                  <span class="float-right"><b> {{nbAdnRej}} </b></span>
-                  <div class="progress progress-sm">
-                    <div class="progress-bar bg-success" style="width: 60%"></div>
-                  </div>
-                </div>
 
                 <!-- /.progress-group -->
                 <!-- <div class="progress-group">

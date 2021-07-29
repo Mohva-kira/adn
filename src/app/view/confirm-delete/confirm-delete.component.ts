@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Adn } from 'src/app/adn';
@@ -13,7 +14,7 @@ export class ConfirmDeleteComponent implements OnInit {
   filtrer!: Adn;
   selectedAdn: any = {id: null ,  nom: null, prenom: null, status: null, nb_copie: null};
   Status: any = ['En attente', 'Incomplet', 'Valider'];
-  constructor( @Inject(MAT_DIALOG_DATA) public data: any, private dataservice: ApiService) { }
+  constructor( @Inject(MAT_DIALOG_DATA) public data: any, private dataservice: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.adn = this.data.adn;
@@ -45,10 +46,16 @@ selectAdn(acte: Adn){
 }
 deleteAdn(form: any){
   this.dataservice.deleteAdn(form.value).subscribe((acte: Adn)=>{
-    console.log("Adn deleted, ", acte);
+    console.log("Adn deleted, ");
+
     this.dataservice.readAdn().subscribe((acte: Adn[])=>{
       this.adn = acte;
     })
   });
+
+  this.router.navigate(['/allAdnWaiting']);
+
 }
+
+
 }

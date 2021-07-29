@@ -1,4 +1,4 @@
-
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
 <div *ngFor="let adn of adn">
   <form  #g = "ngForm" style="display: none;">
     <input type="text" name="id" [(ngModel)] = "selectedAdn.id" style="display: none;">
@@ -15,23 +15,41 @@
 	ngxPrint>Imprimer <i class="fas fa-print"></i></button>
 </div>
 
-<div *ngFor="let adn of adn" style="float: right; margin-top: 75px;  background-color: grey;"  >
-  <form [formGroup]="adnForm"  #h= "ngForm"  *ngIf="adn.printed == 'oui';">
+<div *ngFor="let adn of adn" style="float: right; margin-top: 75px; "  >
+  <br>
+  <form [formGroup]="adnForm"  #h= "ngForm"  *ngIf="adn.printed == 'oui';" >
     <input type="text" name="id" [(ngModel)] = "selectedAdn.id" style="display: none;" [ngModelOptions]="{standalone: true}">
   <br>
-  <label>Nombre de copie</label>
-  <input type="text" name="nb_copie" formControlName="nb_copie">
+    <div style="float: right;">
+  <label>Nombre de copie</label> <br>
+  <input type="text" name="nb_copie" formControlName="nb_copie" style="width: 145px;">
   <!-- <input [(ngModel)]="showMoreControls" > -->
-  <br>
-  <button (click)=" selectAdn(adn); printCopie(h);" type="submit" style="float: right;  width: 145px; height: 75px; background-color: grey;"
-  [useExistingCss]="true"
-	printSectionId="adn"
-	ngxPrint>Imprimer copie <i class="fas fa-print"></i></button>
+      <br>
+      <button (click)=" selectAdn(adn); printCopie(h);" type="submit" style="float: right;  width: 145px; height: 75px; background-color: grey;"
+              [useExistingCss]="true"
+              printSectionId="adn"
+              ngxPrint>Imprimer copie <i class="fas fa-print"></i></button>
+    </div>
+
   </form>
 
+
 </div>
+<br>
+<form *ngIf="user[0].role == 2"  #f = "ngForm" style="float: right; top: 53px; margin-left: 50px; position: absolute;">
+
+  <input type="text" name="id" [(ngModel)] = "selectedAdn.id" style="display: none;">
+  <br>
+
+  <input type="text" name="nom" [(ngModel)] = "selectedAdn.nom" disabled style="display: none;">
+  &nbsp;<br>
+  <input type="text" name="prenom" [(ngModel)] = "selectedAdn.prenom" disabled style="display: none;">
+  <br>
+
+  <mat-checkbox class="example-margin"  [ngModelOptions]="{standalone: true}" (change)="updateAdn(f, $event)" [(ngModel)]="checked"> {{text}} </mat-checkbox>
 
 
+</form>
 <div id="adn">
 <div class="cadreadn" id="cadreadn" style="width: 210mm; height: 297mm" *ngFor="let adn of adn">
 
@@ -71,7 +89,7 @@
        <td> 3 Date de naissance: {{adn.dateNaissance}} </td>
       </tr>
       <tr>
-        <td> 4 Localité: {{adn.localiteNaissance}} </td>
+        <td> 4 Localité: {{localiteNaissance.name}} </td>
       </tr>
       <tr>
         <td> 5 Sexe: {{adn.sexe}} </td>

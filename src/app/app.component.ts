@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Role } from './manager/role';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
-import { PermissionManagerService } from './manager/permission-manager.service'
+
 
 @Component({
 selector: 'app-root',

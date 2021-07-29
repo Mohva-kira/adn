@@ -1,7 +1,7 @@
 
-  <app-appheader></app-appheader>
-  <app-appmenu  ></app-appmenu>
-  <div class="content-wrapper">
+  <app-appheader *ngIf="isAuthorized"></app-appheader>
+  <app-appmenu  *ngIf="isAuthorized"  ></app-appmenu>
+  <div [ngClass]="{'content-wrapper': isAuthorized == true}">
     <app-ng-dynamic-breadcrumb></app-ng-dynamic-breadcrumb>
     <router-outlet></router-outlet> </div>
   <app-appfooter></app-appfooter>

@@ -1,0 +1,12 @@
+.card-body{
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+.card-title{
+  margin-left: 25%;
+}
+
+button {
+  margin: 20px 20px;
+}

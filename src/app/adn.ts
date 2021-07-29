@@ -29,5 +29,6 @@ export class Adn {
   created_date!: Date;
   updated_date!: Date;
   updated_user!: number;
+  published!: number;
 
 }

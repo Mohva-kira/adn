@@ -1,3 +1,7 @@
+import { Pays } from './pays';
+
+import { Volet } from './volet';
+import { Locality } from './locality';
 import { User } from './manager/user';
 
 
@@ -7,6 +11,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Users } from './users';
 import { Observable } from 'rxjs';
+import { Mairie } from './mairie';
 
 @Injectable({
   providedIn: 'root',
@@ -21,11 +26,11 @@ export class ApiService {
   constructor(private httpClient: HttpClient) {}
 
   public userlogin(username: any, password: any) {
-    alert(username);
     return this.httpClient
       .post<any>(this.baseUrl + '/login.php', { username, password })
       .pipe(
         map((Users) => {
+          sessionStorage.setItem('user', JSON.stringify(Users[0]));
 
           this.setToken(Users[0].name);
           this.getLoggedInName.emit(true);
@@ -33,16 +38,23 @@ export class ApiService {
         })
       );
   }
-
-  public userregistration(name: any, email: any, pwd: any) {
+  public newlogin(username: any, password: any) {
     return this.httpClient
-      .post<any>(this.baseUrl + '/register.php', { name, email, pwd })
+      .post(this.baseUrl + '/login.php', { username, password });
+  }
+
+  public userregistration(user: User) {
+    return this.httpClient
+      .post<User>(this.baseUrl + '/register.php', user)
       .pipe(
         map((Users) => {
           return Users;
         })
       );
   }
+
+
+
 
   //token
   setToken(token: string) {
@@ -73,12 +85,48 @@ export class ApiService {
       );
   }
 
+  public createVolet(volet: Volet): Observable<Volet> {
+    return this.httpClient
+      .post<Volet>(this.baseUrl + '/api/create_volet.php', volet)
+      .pipe(
+        map((volet) => {
+          return volet;
+        })
+      );
+
+  }
+
+  public getVolet(id: any, userid: any): Observable<Volet[]> {
+    return this.httpClient.get<Volet[]>(
+      this.baseUrl + '/api/get_volet.php?id=' + id +'&userid=' + userid
+    );
+  }
+
+  public getPays(): Observable<Pays[]>{
+    return this.httpClient.get<Pays[]>(
+      this.baseUrl + '/api/get_pays.php'
+    );
+  }
   public readAdn(): Observable<Adn[]> {
     return this.httpClient
     .get<Adn[]>(
       this.baseUrl + '/api/get_all_adn.php'
     );
 
+  }
+
+  public readLocality(supId: any): Observable<any> {
+    return this.httpClient
+    .get<Locality[]>(
+      this.baseUrl + '/api/get_locality.php/?supId=' + supId
+    );
+
+  }
+  public  getAllLocality(): Observable<any>{
+    return  this.httpClient
+      .get<Locality[]>(
+        this.baseUrl + '/api/get_all_local.php'
+      );
   }
   public adnValider(): Observable<Adn[]> {
     return this.httpClient
@@ -161,7 +209,22 @@ export class ApiService {
     );
 
   }
+  public saveMairieConf(mairie: Mairie): Observable<Mairie> {
+    return this.httpClient
+      .post<Mairie>(this.baseUrl + '/api/configmairie.php', mairie)
+      .pipe(
+        map((mairie) => {
+          return mairie;
+        })
+      );
+  }
+  public readMairieConf():  Observable<Mairie[]> {
+    return this.httpClient
+    .get<Mairie[]>(
+      this.baseUrl + '/api/get_mairie_conf.php'
+    );
 
+  }
 
   log(arg0: string): void {
     throw new Error('Method not implemented.');

@@ -9,6 +9,7 @@ import {
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { Role } from '../manager/role';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +18,9 @@ import { ApiService } from '../api.service';
 })
 export class RegisterComponent implements OnInit {
   angForm: FormGroup;
+  role !: Role;
+  selectRole = [ {id:1, nom: 'Super Admin' } , {id: 2, nom: 'Admin'}, {id:3, nom: 'agent'}, {id:4, nom:'Maternité, clinique ou hopital'} ];
+  selectedRole = {id: null};
   constructor(
     private fb: FormBuilder,
     private dataService: ApiService,
@@ -35,20 +39,24 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {}
 
-  postdata(angForm1: { value: { name: any; email: any; password: any } }) {
+  postdata(angForm1: any) {
+    const user = JSON.parse(sessionStorage.getItem('user')!);
+    angForm1.value.status = 1;
+    angForm1.value.role = this.selectedRole.id;
+    angForm1.value.created_user= 1;
+    angForm1.value.created_date = new Date();
     this.dataService
       .userregistration(
-        angForm1.value.name,
-        angForm1.value.email,
-        angForm1.value.password
+        angForm1.value
       )
       .pipe(first())
       .subscribe(
-        (data) => {
+        (data: any) => {
           this.router.navigate(['login']);
+          console.log(data);
         },
 
-        (error) => {}
+        (error: any) => { console.log(error);}
       );
   }
 

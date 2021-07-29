@@ -2,7 +2,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4" *ngIf="isAuthorized" >
     <!-- Brand Logo -->
-    <a routerLink="/dashboard" class="brand-link">
+    <a  routerLink="/" class="brand-link">
       <img src="assets/dist/img/adn logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">ADN </span>
     </a>
@@ -15,15 +15,15 @@
           <img src="assets/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a routerLink="/admin/profile/{{user.id}}" class="d-block"> {{user.name}} </a>
+          <a routerLink="/profile/{{user.id}}" class="d-block"> {{user.name}} </a>
         </div>
         <br>
 
 
       </div>
-      <div class="users" >
+      <div class="users" *ngIf="user.role == 2" >
         <i class="fa fa-users" aria-hidden="true"></i> &nbsp;
-        <a routerLink="/admin/users/">Utilisateurs</a>
+        <a routerLink="/users/">Utilisateurs</a>
       </div>
 
       <!-- SidebarSearch Form -->
@@ -43,49 +43,40 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item "> <a [routerLink]="['admin/dashboard']" class="nav-link "> Tableau de bord </a></li>
-          <li class="nav-item "> <a [routerLink]="['adn']" class="nav-link " style="background-color: green;">
+          <li class="nav-item " *ngIf="user &&  user.role == 3"> <a [routerLink]="['/dashboard']" class="nav-link "><i class="nav-icon fas fa-columns"></i> Tableau de bord </a></li>
+          <li class="nav-item " *ngIf="user &&   user.role == 2"> <a [routerLink]="['admin/dashboard']" class="nav-link "><i class="nav-icon fas fa-columns"></i> Tableau de bord </a></li>
+          <li class="nav-item " *ngIf="user && user.role == 4"> <a [routerLink]="['mch/dashboard']" class="nav-link "> <i class="nav-icon fas fa-columns"></i> Tableau de bord </a></li>
+          <li class="nav-item " *ngIf="user && (user.role == 3 ||  user.role == 2)"> <a [routerLink]="['adn']" class="nav-link " >
 
-            <i class="nav-icon fas fa-plus"></i>
+            <i class="nav-icon fas fa-plus" style="color: green;"></i>
             Créer un ADN
            </a>
           </li>
-          <li class="nav-item">
-            <a  class="nav-link">
+          <li class="nav-item " *ngIf="user && (user.role == 4 || user.role == 2)"> <a [routerLink]="['mch/declaration']" class="nav-link " >
+
+            <i style="color: green;" class="nav-icon fas fa-plus"></i>
+            Créer un volet
+           </a>
+          </li>
+          <li class="nav-item" *ngIf="user && (user.role == 3 || user.role == 2)">
+            <a  class="nav-link" [routerLink]="['allAdnWaiting']">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Demandes ADN
-                <i class="right fas fa-angle-left"></i>
+                Tout les ADN
+
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item" *ngIf="isAuthorized" >
-                <a [routerLink]="['allAdn']" class="nav-link">
-                  <i class="nav-icon fas fa-table text-warning"></i>
-                  <p>Nouvelles demandes</p>
-                  <span class=" badge badge-danger">New</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a [routerLink]="['allAdnValidate']" class="nav-link">
-                  <i class="fas fa-chart-bar nav-icon text-info"></i>
-                  <p> Demandes vérifiée</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a [routerLink]="['allAdnIncomplet']" class="nav-link">
-                  <i class="fas fa-table nav-icon text-danger"></i>
-                  <p>Demandes incomplet</p>
-                </a>
-              </li>
 
-              <li class="nav-item">
-                <a [routerLink]="['allAdn']" class="nav-link">
-                  <i class="fas fa-table  nav-icon"></i>
-                  <p>Toute les demandes</p>
-                </a>
-              </li>
-            </ul>
+          </li>
+          <li class="nav-item" *ngIf="user && user.role == 4 || user.role == 2">
+            <a  class="nav-link" [routerLink]="['mch/volets']">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Tous les volets
+
+              </p>
+            </a>
+
           </li>
           <!-- <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
