@@ -108,7 +108,9 @@ updateAdn(form: any, event: any): void{
 
   getLocality(){
     this.dataservice.getAllLocality().subscribe((locality: Locality[]) => {
+      console.log('yeouuu');
       this.locality = locality;
+      console.log('les locaux', this.locality);
       this.localiteNaissance = this.locality.find(local => local.id == +this.adn[0].localiteNaissance)
       console.log('locales', this.localiteNaissance.name);
 

@@ -136,6 +136,7 @@ createAdnFromVolet(form: any): void{
     form.value.mPrenom = this.selectedVolet.mPrenom;
     form.value.mProfession = this.selectedVolet.mProfession;
     form.value.mDomicile = this.selectedVolet.mDomicile;
+    form.value.sexe = this.selectedVolet.sexe;
     form.value.pnOfficier  = this.user[0].id;
     form.value.annee = new Date('YYYY');
     form.value.status = 'Non valide';

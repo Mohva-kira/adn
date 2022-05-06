@@ -1,26 +1,133 @@
-<p>detail-volet works!</p>
+<div id="adn">
+  <div class="cadreadn" id="cadrevolet" style="width: 210mm; height: 297mm" *ngFor="let volet of volet">
 
-<div *ngFor="let vol of volet">
-  {{vol.dateNaissance}}
-  {{vol.heureNaissance}}
-  {{vol.nom}}
-  {{vol.prenom}}
-  {{vol.sexe}}
-  {{vol.commune}}
-  {{vol.pPrenom}}
-  {{vol.pNom}}
-  {{vol.pAge}}
-  {{vol.pDomicile}}
-  {{vol.pNationalite}}
-  {{vol.pProfession}}
-  {{vol.mPrenom}}
-  {{vol.mNom}}
-  {{vol.mAge}}
-  {{vol.mDomicile}}
-  {{vol.mNationalite}}
-  {{vol.mProfession}}
-  {{vol.dNom}}
-  {{vol.dPrenom}}
-  {{vol.dAge}}
-  {{vol.dDomicile}}
-</div>
+
+    <div class="entetecadre" >
+      <div class="entetegauche" >
+        Region de:    <br>
+        &nbsp; Cercle de:    <br>
+        &nbsp; Arrondissement de:  <br>
+        &nbsp; Commune de: <br>
+        &nbsp; Centre: <br>
+      </div>
+
+      <div class="entetedroite" >
+
+        &nbsp; &nbsp; &nbsp; REPUBLIQUE DU MALI <br>
+        Un Peuple - Un But - Une Foi <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  --------------------------
+
+      </div>
+
+
+      <h3 class="titre">EXTRAIT D'ACTE DE NAISSANCE N°________________</h3>
+
+    </div>
+
+    <div class="enfant" >
+      <table >
+
+        <tr>
+          <td>  1 Prénom(s): {{volet.prenom}}  </td>
+        </tr>
+        <tr>
+          <td> 2 Nom: {{volet.nom}} </td>
+        </tr>
+        <tr>
+          <td> 3 Date de naissance: {{volet.dateNaissance}} </td>
+        </tr>
+        <tr>
+          <td> 4 Localité: {{volet.commune}} </td>
+        </tr>
+        <tr>
+          <td> 5 Sexe: {{volet.sexe}} </td>
+        </tr>
+
+
+      </table>
+
+    </div>
+
+
+    <div class="pere" >
+      <div class="peregauche">
+        Père
+      </div>
+      <table >
+
+        <tr>
+          <td> 6 Prénom(s): {{volet.pPrenom}} </td>
+        </tr>
+        <tr>
+          <td> 7 Nom: {{volet.pNom}} </td>
+        </tr>
+        <tr>
+          <td> 8 Profession: {{volet.pProfession}} </td>
+        </tr>
+        <tr>
+          <td> 9 Domicile: {{volet.pDomicile}} </td>
+        </tr>
+
+
+      </table>
+
+    </div>
+
+    <div class="mere" >
+      <div class="meregauche">
+        Mère
+      </div>
+      <table >
+
+        <tr>
+          <td> 10 Prénom(s): {{volet.mPrenom}} </td>
+        </tr>
+        <tr>
+          <td> 11 Nom: {{volet.mNom}} </td>
+        </tr>
+        <tr>
+          <td> 12 Profession: {{volet.mProfession}} </td>
+        </tr>
+        <tr>
+          <td> 13 Domicile: {{volet.mDomicile}} </td>
+        </tr>
+
+
+      </table>
+
+    </div>
+    <div class="officier" >
+      <table>
+        <tr>
+          <td>
+            14  Prénom(s) et Nom de l'Officier de l'état civil : {{volet.officierId}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            15 Qualité: Officier d'état civil
+          </td>
+        </tr>
+        <tr>
+          <td>
+            16  Date d'établissement de l'acte: {{volet.created_date}}
+          </td>
+        </tr>
+      </table>
+
+    </div>
+
+
+    <div class="bas">
+      Certifie le présent conforme à l'original N°________________de l'année ____ __________ <br>
+      &nbsp;  du centre ____________ de la commune ___________ <br>
+      &nbsp; Prénom(s) Nom et Qualité______ {{volet.officierId}} _________   <br>
+      &nbsp; Officier de l'etat civil du centre _____________ de la commune _______________  <br>
+      &nbsp; Date ____ {{volet.created_date}} ___
+
+      <h1 class="basdroite" >Officier de l'Etat Civil</h1>
+    </div>
+
+
+
+  </div>

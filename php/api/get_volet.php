@@ -6,14 +6,9 @@ $userid = mysqli_real_escape_string($mysqli, $_GET['userid']);
 
 $locality = [];
 
-if($id != 'null' && $userid !='null'){
+if($id != 'null' ){
 
-$sql = "SELECT * FROM volet WHERE id = $id AND created_by = $userid";
-}elseif($id == 'null' && $userid !='null') {
-  $sql = "SELECT * FROM volet WHERE created_by = $userid";
-}elseif($id!='null' && $userid == 'null'){
-  $sql = "SELECT * FROM volet WHERE id= $id ";
-
+$sql = "SELECT * FROM volet WHERE id = $id ";
 }else {
   $sql = "SELECT * FROM volet";
 }

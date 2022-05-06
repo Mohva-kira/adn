@@ -27,6 +27,7 @@ export class DeclarationComponent implements OnInit {
   selectedLocal: any = {region: null, cercle: null, commune: null};
 
 user !: User[];
+  // tslint:disable-next-line:max-line-length
   constructor(private fb: FormBuilder, private dataService: ApiService, public datepipe: DatePipe, private router: Router, private toastr: ToastrService) {
 
     this.angForm = this.fb.group({
@@ -78,14 +79,14 @@ user !: User[];
 
     angForm1.value.status = 1;
     angForm1.value.created_date = new Date();
-    angForm1.value.annee = new Date();
+    angForm1.value.annee = this.angForm.value.annee;
     angForm1.value.created_by = this.user[0].id;
     angForm1.value.printed = 0;
     angForm1.value.voletId = this.datepipe.transform(angForm1.value.dateNaissance, 'ddMMyyyy');
     angForm1.value.region = this.selectedLocal.region;
     angForm1.value.commune = this.selectedLocal.commune;
     angForm1.value.cercle = this.selectedLocal.cercle;
-    angForm1.value.sexe = this.sexes;
+    angForm1.value.sexe = this.angForm.value.sexe;
 
     if (this.selectedLocal.commune){
       angForm1.value.localiteNaissance = this.selectedLocal.commune;
@@ -93,7 +94,7 @@ user !: User[];
       angForm1.value.localiteNaissance = this.selectedLocal.cercle;
     }
     angForm1.value.published = 1;
-    
+
     this.dataService.createVolet(angForm1.value).subscribe(
       (volet: Volet) => {
 

@@ -18,7 +18,7 @@ import { Mairie } from './mairie';
 })
 export class ApiService {
   redirectUrl!: string;
-  baseUrl: string = 'http://localhost/adn/php';
+  baseUrl = 'http://localhost/adn/php';
   adn!: Adn[];
 
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();

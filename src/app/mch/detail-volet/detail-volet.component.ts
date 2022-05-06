@@ -28,7 +28,7 @@ export class DetailVoletComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
 
 
-    this.apiService.getVolet(id, this.user.id ).subscribe((volet: Volet[])=>{
+    this.apiService.getVolet(id, this.user.id ).subscribe((volet: any)=>{
       this.volet = volet;
 
       console.log(this.volet);

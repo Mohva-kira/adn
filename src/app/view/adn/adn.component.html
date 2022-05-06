@@ -9,7 +9,7 @@
   <label>Prenom</label>
   <input type="text" name="prenom" [(ngModel)] = "selectedAdn.prenom">
   </form>
-  <button *ngIf="adn.printed != 'oui';" (click)=" selectAdn(adn); printupdt(g);" type="submit" style="float: right; margin-top: 75px; width: 145px; height: 75px; background-color: grey;"
+  <button *ngIf="adn.printed != 'oui' && adn.status == 'Valider' ;" (click)=" selectAdn(adn); printupdt(g);" type="submit" style="float: right; margin-top: 75px; width: 145px; height: 75px; background-color: grey;"
   [useExistingCss]="true"
 	printSectionId="adn"
 	ngxPrint>Imprimer <i class="fas fa-print"></i></button>
@@ -17,7 +17,7 @@
 
 <div *ngFor="let adn of adn" style="float: right; margin-top: 75px; "  >
   <br>
-  <form [formGroup]="adnForm"  #h= "ngForm"  *ngIf="adn.printed == 'oui';" >
+  <form [formGroup]="adnForm"  #h= "ngForm"  *ngIf="adn.printed == 'oui' &&  adn.status == 'Valider';" >
     <input type="text" name="id" [(ngModel)] = "selectedAdn.id" style="display: none;" [ngModelOptions]="{standalone: true}">
   <br>
     <div style="float: right;">
@@ -89,7 +89,7 @@
        <td> 3 Date de naissance: {{adn.dateNaissance}} </td>
       </tr>
       <tr>
-        <td> 4 Localité: {{localiteNaissance.name}} </td>
+        <td> 4 Localité: {{localiteNaissance?.name}} </td>
       </tr>
       <tr>
         <td> 5 Sexe: {{adn.sexe}} </td>
