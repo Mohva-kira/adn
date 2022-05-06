@@ -1,0 +1,31 @@
+.creer{
+  padding: 20px;
+  border-radius: 20px;
+  margin: auto;
+  width: 40%;
+}
+
+.recherche{
+  padding: 20px;
+  border-radius: 20px;
+  margin: auto;
+  width: 40%;
+}
+
+.insert{
+  line-break: auto;
+}
+
+mat-card{
+  margin: auto;
+  width: 250px;
+  height: auto;
+  padding: 10px 10px;
+  margin-bottom: 30px;
+}
+.mat-card-image{
+  margin: auto;
+  width: 125px !important;
+  height: auto;
+  display: block;
+}

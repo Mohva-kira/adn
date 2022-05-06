@@ -1,0 +1,230 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
+<div class="creer">
+<button mat-raised-button (click)="voletDisplay()" > Volet 2</button> <button mat-raised-button (click)="jugementDisplay()"> Jugement supplétif</button>
+</div>
+
+<div [hidden]="!volet2IsShow">
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field>
+<table mat-table
+     [dataSource]="dataSource" matSort multiTemplateDataRows
+     class="mat-elevation-z8">
+
+ <!-- Weight Column -->
+<ng-container matColumnDef="actions">
+  <th mat-header-cell *matHeaderCellDef> Actions </th>
+  <td mat-cell *matCellDef="let element"> <button mat-raised-button class="voir" routerLink="/mch/volet/{{element.id}}"> <i class="fas fa-eye"></i>  </button> <button mat-raised-button class="voir" routerLink="/volet-adn/{{element.id}}"> <i class="fas fa-file"></i>  </button></td>
+</ng-container>
+
+<ng-container matColumnDef="id">
+  <th mat-header-cell *matHeaderCellDef> Id </th>
+  <mat-form-field>
+    <input matInput class="form-field" [formControl]="positionFilter" placeholder="Id ">
+  </mat-form-field>
+  <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+</ng-container>
+
+<ng-container matColumnDef="nom">
+
+  <th mat-header-cell *matHeaderCellDef> Nom
+     <div>
+    <mat-form-field>
+      <input matInput class="form-field" [formControl]="nameFilter" placeholder="Nom">
+    </mat-form-field>
+  </div>
+  </th>
+
+  <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+
+
+</ng-container>
+<ng-container matColumnDef="prenom">
+  <th mat-header-cell *matHeaderCellDef> Prenom </th>
+  <td mat-cell *matCellDef="let element"> {{element.prenom}} </td>
+</ng-container>
+
+<ng-container matColumnDef="dateNaissance">
+  <th mat-header-cell *matHeaderCellDef> Date de naissance </th>
+  <td mat-cell *matCellDef="let element"> {{element.dateNaissance}} </td>
+</ng-container>
+<ng-container matColumnDef="status">
+  <th mat-header-cell *matHeaderCellDef> Status </th>
+  <td mat-cell *matCellDef="let element"> <div *ngIf="element.status == 1"> <i style="color: green;" class="fas fa-check"></i></div> </td>
+</ng-container>
+<!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+
+<tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+<tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+      class="example-element-row"
+      >
+  </tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[6, 12, 18]" showFirstLastButtons></mat-paginator>
+</div>
+<mat-horizontal-stepper [hidden]="!jugementIsShow" class="adnform" labelPosition="bottom" errorMessage="Name is required." linear>
+
+    <div class="col-md-6 col-md-offset-3 adnform">
+      <div class="jumbotron">
+  <mat-step label="L'enfant" state="phone">
+
+
+
+    <form  [formGroup]="angForm" #adn = "ngForm" autocomplete="off" >
+
+      <mat-form-field>
+        <mat-label>Nom</mat-label>
+        <input name="nom" matInput placeholder="Nom de famille" autocomplete="off" formControlName="nom" required>
+        <mat-icon matSuffix>child_care</mat-icon>
+      </mat-form-field>
+     <br>
+      <mat-form-field>
+        <mat-label>Prénom</mat-label>
+        <input name="prenom" matInput placeholder="Prénom" autocomplete="off" formControlName="prenom" required>
+        <mat-icon matSuffix>child_care</mat-icon>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Date de naissance</mat-label>
+        <input name="dateNaissance" type="date" matInput autocomplete="off" formControlName="dateNaissance" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Localité de Naissance</mat-label>
+        <input name="localiteNaissance" matInput placeholder="Localité de naissance" value="{{mairieConf}}" autocomplete="off" formControlName="localiteNaissance" required>
+      </mat-form-field>
+      <br>
+
+        <select name="sexe" class="custom-select"  formControlName="sexe" >
+          <option value="" disabled>Choisir un sexe</option>
+          <option *ngFor="let sexe of sexes" [ngValue]="sexe">{{sexe}}</option>
+       </select>
+
+
+
+
+
+    <div>
+      <button mat-button matStepperNext>Suivant</button>
+    </div>
+
+    </form>
+   </mat-step>
+
+  <mat-step label="Père" state="chat">
+
+
+    <form [formGroup]="angForm" #adn = "ngForm" autocomplete="off" >
+      <mat-form-field>
+        <mat-label>Prénom</mat-label>
+        <input name="pPrenom" matInput placeholder="Prénom du père" autocomplete="off" formControlName="pPrenom" required>
+        <mat-icon matSuffix>male</mat-icon>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Nom</mat-label>
+        <input name="pNom" matInput placeholder="Nom du père " autocomplete="off" formControlName="pNom" required>
+        <mat-icon matSuffix>male</mat-icon>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Profession</mat-label>
+        <input name="pProfession" matInput placeholder="Profession du père" autocomplete="off" formControlName="pProfession" required>
+        <mat-icon matSuffix>male</mat-icon>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Domicile</mat-label>
+        <input name="pDomicile" matInput placeholder="Domicile du père" autocomplete="off" formControlName="pDomicile" required>
+      </mat-form-field>
+
+
+
+
+
+    <div>
+      <button mat-button matStepperPrevious type="button">Précédent</button>
+      <button mat-button matStepperNext type="button">Suivant</button>
+    </div>
+    </form>
+  </mat-step>
+
+  <mat-step label="Mère">
+
+
+    <form [formGroup]="angForm" #adn = "ngForm" autocomplete="off" >
+
+      <mat-form-field>
+        <mat-label>Prénom</mat-label>
+        <input name="mPrenom" matInput placeholder="Prénom de la mère" autocomplete="off" formControlName="mPrenom" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Nom</mat-label>
+        <input name="mNom" matInput placeholder="Nom de la mère" autocomplete="off" formControlName="mNom" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Profession</mat-label>
+        <input name="mProfession" matInput placeholder="Profession de la mère" autocomplete="off" formControlName="mProfession" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Domicile</mat-label>
+        <input name="mDomicile" matInput placeholder="Domicile de la mère" autocomplete="off" formControlName="mDomicile" required>
+      </mat-form-field>
+
+
+
+    <div>
+      <button mat-button matStepperPrevious type="button">Précédent</button>
+      <button mat-button matStepperNext type="button">Suivant</button>
+    </div>
+
+    </form>
+  </mat-step>
+  <mat-step label="Centre">
+    <form [formGroup]="angForm" #adn = "ngForm" autocomplete="off" >
+
+      <mat-form-field>
+        <mat-label>Prénom et nom de l'officier d'état civil</mat-label>
+        <input name="pnOfficier" matInput placeholder="Nom et prénom" autocomplete="off" formControlName="pnOfficier" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Centre</mat-label>
+        <input name="centre" matInput placeholder="Centre" autocomplete="off" formControlName="centre" required>
+      </mat-form-field>
+
+
+
+
+    <div>
+      <button mat-button matStepperPrevious type="button">Précedent</button>
+      <button type="button" [disabled]="angForm.invalid" (click)="postdata(adn)" class="btn btn-success"> Ajouter </button>
+    </div>
+    </form>
+  </mat-step>
+
+
+   <!-- Icon overrides. -->
+   <ng-template matStepperIcon="phone">
+    <mat-icon>call_end</mat-icon>
+  </ng-template>
+
+  <ng-template matStepperIcon="chat">
+    <mat-icon>forum</mat-icon>
+  </ng-template>
+</div>
+</div>
+
+</mat-horizontal-stepper>
+
+
+
+
+
+
+

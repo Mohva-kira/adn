@@ -1,0 +1,48 @@
+.bar{
+  background-color:goldenrod;
+  box-shadow: 0 1px 1px #ccc;
+  border-radius: 2px;
+  width: 400px;
+  padding: 14px;
+  margin: 45px auto 3px;
+  position:relative;
+}
+
+.bar input{
+  background:#fff no-repeat 13px 13px;
+  border: none;
+  width: 100%;
+  line-height: 19px;
+  padding: 11px 0;
+
+  border-radius: 2px;
+  box-shadow: 0 2px 8px #c4c4c4 inset;
+  text-align: left;
+  font-size: 14px;
+  font-family: inherit;
+  color: #738289;
+  font-weight: bold;
+  outline: none;
+  text-indent: 40px;
+}
+
+div > ul{
+  list-style: none;
+  width: 425px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+div > ul li{
+  background: #ddd;
+  border-bottom: 3px solid whitesmoke;
+  padding: 5px;
+  overflow: hidden;
+  border-radius: 25px;
+}
+
+div > ul li p{
+  text-align: center;
+  font-weight: bold;
+  padding-top: 7px;
+}

@@ -1,0 +1,22 @@
+<form   #f = "ngForm">
+
+  <input type="text" name="id" [(ngModel)] = "selectedAdn.id" style="display: none;">
+  <br>
+  <label>Nom</label>
+  <input type="text" name="nom" [(ngModel)] = "selectedAdn.nom" disabled>
+   &nbsp;
+  <label>Prenom</label>
+  <input type="text" name="prenom" [(ngModel)] = "selectedAdn.prenom" disabled>
+  <br>
+  <select name="status" class="custom-select"  [(ngModel)] = "selectedAdn.status"  [ngModelOptions]="{ standalone: true}" >
+    <option value="" disabled>Choisir un status</option>
+    <option *ngFor="let status of Status" [ngValue]="status">{{status}}</option>
+ </select>
+
+
+
+  <button mat-raised-button type="submit" (click)="updateAdn(f)" matDialogClose>Enregistrer</button>
+  <button mat-raised-button matDialogClose> Mettre à jour info</button>
+  <button mat-raised-button matDialogClose>Annuler</button>
+
+  </form>

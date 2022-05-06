@@ -1,0 +1,17 @@
+<div class="input-group input-group-sm">
+  <input #searchbar (keyup)="fetchAdn($event)" [(ngModel)]="searchInput" class="form-control form-control-navbar" type="text" placeholder="Recherche par ADN-ID" aria-label="Search">
+  <div class="input-group-append">
+    <button class="btn btn-navbar" type="submit">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+</div>
+
+
+<div style="margin: auto; width: 50%;" >
+  <ul>
+    <li *ngFor="let show of searchResult">
+       <p> {{ show.nom }}</p>
+    </li>
+  </ul>
+</div>

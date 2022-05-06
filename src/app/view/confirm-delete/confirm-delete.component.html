@@ -1,0 +1,17 @@
+<form   #f = "ngForm">
+      <div class="text-danger" >
+    <p> <i class="fas fa-trash"></i> Voulez vous vraiment supprimer ce contenus </p>
+  </div>
+  <input type="text" name="id" [(ngModel)] = "selectedAdn.id" style="display: none;">
+  <br>
+  <label>Nom</label>
+  <input type="text" name="nom" [(ngModel)] = "selectedAdn.nom" disabled>
+  &nbsp;
+  <label>Prenom</label>
+  <input type="text" name="prenom" [(ngModel)] = "selectedAdn.prenom" disabled>
+  <br>
+
+  <button mat-raised-button type="submit" (click)="deleteAdn(f)" matDialogClose>Oui</button>
+
+  <button mat-raised-button matDialogClose>Annuler</button>
+  </form>

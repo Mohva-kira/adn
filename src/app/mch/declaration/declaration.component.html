@@ -1,0 +1,261 @@
+<mat-horizontal-stepper class="adnform" labelPosition="bottom" errorMessage="Name is required." linear>
+
+  <div class="col-md-6 col-md-offset-3 adnform">
+    <div class="jumbotron">
+<mat-step label="L'enfant" state="phone">
+
+
+
+  <form  [formGroup]="angForm" #volet = "ngForm" autocomplete="off" >
+
+    <mat-form-field>
+      <mat-label>Nom</mat-label>
+      <input name="nom" matInput placeholder="Nom de famille" autocomplete="off" formControlName="nom" required>
+      <mat-icon matSuffix>child_care</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Prénom</mat-label>
+      <input name="prenom" matInput placeholder="Prénom" autocomplete="off" formControlName="prenom" required>
+      <mat-icon matSuffix>child_care</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Date de naissance</mat-label>
+      <input name="dateNaissance" type="date" matInput autocomplete="off" formControlName="dateNaissance" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Heure de naissance</mat-label>
+      <input name="heureNaissance" type="time"
+       matInput autocomplete="off" formControlName="heureNaissance" required>
+    </mat-form-field>
+    <br>
+    <fieldset>
+      <legend>Localité de naissance</legend> <br>
+
+
+     <mat-form-field appearance="fill" >
+      <mat-label>Region</mat-label>
+      <select matNativeControl  name="region" formControlName="region" [(ngModel)]= "selectedLocal.region"  required (change)="cercle(selectedLocal.region);">
+
+        <option *ngFor="let region of locality" [value]="region.id">
+          {{region.name}}
+        </option>
+      </select>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cercle</mat-label>
+      <select matNativeControl  formControlName="cercle"[(ngModel)]= "selectedLocal.cercle"   (change)="commune(selectedLocal.cercle);"   required>
+
+        <option *ngFor="let cercle of cercles" [value]="cercle.id">
+          {{cercle.name}}
+        </option>
+      </select>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Commune</mat-label>
+      <select matNativeControl  formControlName="commune" [(ngModel)]= "selectedLocal.commune"  >
+
+        <option *ngFor="let commune of communes" [value]="commune.id">
+          {{commune.name}}
+        </option>
+      </select>
+
+    </mat-form-field>
+
+  </fieldset>
+
+     <mat-form-field appearance="fill">
+      <mat-label>Sexe</mat-label>
+      <select matNativeControl   formControlName="sexe" required>
+        <option>--</option>
+        <option *ngFor="let sexe of sexes" [value]="sexe">
+          {{sexe}}
+        </option>
+      </select>
+
+    </mat-form-field>
+
+
+
+
+  <div class="vertical-center">
+    <button mat-raised-button matStepperNext>Suivant</button>
+  </div>
+
+  </form>
+ </mat-step>
+
+<mat-step label="Père" state="chat">
+
+
+  <form [formGroup]="angForm" #volet = "ngForm" autocomplete="off" >
+    <mat-form-field>
+      <mat-label>Prénom</mat-label>
+      <input name="pPrenom" matInput placeholder="Prénom du père" autocomplete="off" formControlName="pPrenom" required>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Nom</mat-label>
+      <input name="pNom" matInput placeholder="Nom du père " autocomplete="off" formControlName="pNom" required>
+
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Age</mat-label>
+      <input name="pAge" type="number" matInput placeholder="Age " autocomplete="off" formControlName="pAge" required>
+
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nationalité</mat-label>
+      <select matNativeControl  formControlName="pNationalite" name="pNationalite"   required>
+
+        <option *ngFor="let nationalite of pays" [value]="nationalite.id">
+          {{nationalite.nom_fr_fr}}
+        </option>
+      </select>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Profession</mat-label>
+      <input name="pProfession" matInput placeholder="Profession du père" autocomplete="off" formControlName="pProfession" required>
+
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Domicile</mat-label>
+      <input name="pDomicile" matInput placeholder="Domicile du père" autocomplete="off" formControlName="pDomicile" required>
+    </mat-form-field>
+
+
+
+
+
+  <div class="vertical-center">
+    <button mat-raised-button matStepperPrevious type="button">Précédent</button>
+    <button mat-raised-button matStepperNext type="button">Suivant</button>
+  </div>
+  </form>
+</mat-step>
+
+<mat-step label="Mère">
+
+
+  <form [formGroup]="angForm" #volet = "ngForm" autocomplete="off" >
+
+    <mat-form-field>
+      <mat-label>Prénom</mat-label>
+      <input name="mPrenom" matInput placeholder="Prénom de la mère" autocomplete="off" formControlName="mPrenom" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Nom</mat-label>
+      <input name="mNom" matInput placeholder="Nom de la mère" autocomplete="off" formControlName="mNom" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Age</mat-label>
+      <input name="mAge" type="number" matInput placeholder="Age " autocomplete="off" formControlName="mAge" required>
+
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Nationalité</mat-label>
+      <select matNativeControl  formControlName="mNationalite" name="mNationalite"   required>
+        <option>--</option>
+        <option *ngFor="let nationalite of pays" [value]="nationalite.id">
+          {{nationalite.nom_fr_fr}}
+        </option>
+      </select>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Profession</mat-label>
+      <input name="mProfession" matInput placeholder="Profession de la mère" autocomplete="off" formControlName="mProfession" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Domicile</mat-label>
+      <input name="mDomicile" matInput placeholder="Domicile de la mère" autocomplete="off" formControlName="mDomicile" required>
+    </mat-form-field>
+
+
+
+  <div class="vertical-center">
+    <button mat-raised-button matStepperPrevious type="button">Précédent</button>
+    <button mat-raised-button matStepperNext   type="button"  >Suivant</button>
+  </div>
+
+  </form>
+</mat-step>
+
+<mat-step label="Déclarant">
+
+
+  <form [formGroup]="angForm" #volet = "ngForm" autocomplete="off" >
+
+    <mat-form-field>
+      <mat-label>Prénom</mat-label>
+      <input name="dPrenom" matInput placeholder="Prénom de la mère" autocomplete="off" formControlName="dPrenom" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Nom</mat-label>
+      <input name="dNom" matInput placeholder="Nom de la mère" autocomplete="off" formControlName="dNom" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Age</mat-label>
+      <input name="dAge" type="number" matInput placeholder="Age " autocomplete="off" formControlName="dAge" required>
+
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Domicile</mat-label>
+      <input name="dDomicile" matInput placeholder="Domicile de la mère" autocomplete="off" formControlName="mDomicile" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Centre</mat-label>
+      <select matNativeControl  formControlName="centre" name="centre"   required>
+        <option>--</option>
+        <option *ngFor="let centre of centres" [value]="centre">
+          {{centre}}
+        </option>
+      </select>
+
+    </mat-form-field>
+
+  <div class="vertical-center">
+    <button mat-button matStepperPrevious type="button">Précédent</button>
+    <button mat-raised-button   type="button"  (click)="postdata(volet)">Créer le volet</button>
+  </div>
+
+  </form>
+</mat-step>
+
+
+
+ <!-- Icon overrides. -->
+ <ng-template matStepperIcon="phone">
+  <mat-icon>call_end</mat-icon>
+</ng-template>
+
+<ng-template matStepperIcon="chat">
+  <mat-icon>forum</mat-icon>
+</ng-template>
+</div>
+</div>
+
+</mat-horizontal-stepper>
+
+
+
+
+
+
+
